@@ -1,0 +1,54 @@
+%**************************************************************************
+% Program name:     ESE306_Project1_Binomial.m
+% Author:           Edward Wang && Vineet Lachwani
+% Date Created:     February 27, 2017
+% Last Update:      February 27, 2017
+%
+% ESE 306 Project showing binomial,
+%
+%
+%
+%
+%**************************************************************************
+classdef ESE306Project1
+    properties
+    end
+    
+    methods
+        function init()
+            clear % Remove any exsiting variables in the workspace
+        close all % Close all figure windows
+clc % Clear Command Window
+        end
+        %Binomial
+        function binomial()
+            
+        end
+    end
+    
+end
+
+
+disp('Binomial');
+prompt = 'Enter number of trials: ';
+SampleSize = input(prompt);
+N = SampleSize;
+prompt = 'Enter probability of each success: ';
+P = input(prompt);
+
+binArray = binornd(N,P, [1,N]);
+
+%Test - try values of #of trials = 100 and p needs to be a decimal
+histogram(binArray, N);
+
+%Mean and Variance
+binMean = mean(binArray);
+binVar = var(binArray);
+
+% Moments utilizing the 'betastat' function
+[mu, var] = binostat(N, P);
+
+% Compute the parameters of the distribution from data, utilizing the
+% 'betafit' function
+param = binofit(binArray, N);
+

@@ -14,41 +14,91 @@ classdef ESE306Project1
     properties
     end
     
-    methods
-        function init()
-            clear % Remove any exsiting variables in the workspace
-        close all % Close all figure windows
-clc % Clear Command Window
+    methods(Static = true)
+        %Constructor
+        function obj = ESE306Project1()
+           
         end
+        
+        function listDistributions()
+            fprintf('ALL DISTRIBUTIONS\n');
+            fprintf('1]Binomial\n');
+            fprintf('2]Poisson\n');
+            fprintf('3]Normal\n');
+            fprintf('4]Befa\n');
+            %fprintf('Poisson Distribution:\nPoisson(x,y)\nx = lamda\ny = number of trials\n');
+            %fprintf('Normal Distribution:\nNormal(x,y,z)\nx = mu\ny = sigma\nz = number of samples\n');
+            %fprintf('Beta Distribution:\nBeta(x,y,z)\nx = alpha\ny = beta\nz = number of samples\n');
+
+            
+           
+        end
+        
         %Binomial
         function binomial()
+            fprintf('Binomial Distribution:\n');
+            fprintf('Binomial(numOfTrials, prob, numOfSamples)\n');
+            prompt = 'Enter number of trials: ';
+            SampleSize = input(prompt);
+            numOfTrials = SampleSize;
+            prompt = 'Enter probability of each success: ';
+            prob = input(prompt);
+            prompt = 'Enter number of samples: ';
+            numOfSamples = input(prompt);
+            
+            %Get binomial array
+            binArray = binornd(numOfTrials, prob, [1, numOfSamples]);
+            histogram(binArray,numOfTrials);
+            %Compute the sample mean and variance
+            avg = mean(binArray);
+            variance = var(binArray);
+                %Moments utilizing the 'binostat' function
+            [mu, sigma] = binostat(numOfTrials, prob);
+            % Compute the parameters of the distribution from data
+            param = binofit(binArray, numOfTrials);
+            %Display the results
+            fprintf('Binomial Distribution\n');
+            fprintf('Sample Mean: %f\n', avg);
+            fprintf('Sample Variance: %f\n', variance);
+            
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', sigma);
+                %fprintf('Distribution Parameters: %f\n', param);
+        end
+        
+        %Poisson Distribution
+        function poisson()
+            fprintf('Poisson Distribution:\n');
+            fprintf('Poisson(lamda, numOfSamples)\n');
+            prompt = 'Enter lamda:';
+            lamda = input(prompt);
+            prompt = 'Enter number of samples:';
+            numOfSamples = input(prompt);
+            poissArray = poissrnd(lamda, [1,numOfSamples]);
+            histogram(poissArray);
+            avg = mean(poissArray);
+            variance = var(poissArray);
+            fprintf('Poisson Distribution\n');
+            fprintf('Sample Mean: %f\n', avg);
+            fprintf('Sample Variance: %f\n', variance);
+            [mu, variance] = poisstat(lamda);
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', variance);
+        end
+        
+        function normal()
+            
+        end
+        
+        function betaBinomialPDF()
+            
+        end
+        
+        %Beta Binomial
+        function betaBinomialPMF()
             
         end
     end
     
 end
-
-
-disp('Binomial');
-prompt = 'Enter number of trials: ';
-SampleSize = input(prompt);
-N = SampleSize;
-prompt = 'Enter probability of each success: ';
-P = input(prompt);
-
-binArray = binornd(N,P, [1,N]);
-
-%Test - try values of #of trials = 100 and p needs to be a decimal
-histogram(binArray, N);
-
-%Mean and Variance
-binMean = mean(binArray);
-binVar = var(binArray);
-
-% Moments utilizing the 'betastat' function
-[mu, var] = binostat(N, P);
-
-% Compute the parameters of the distribution from data, utilizing the
-% 'betafit' function
-param = binofit(binArray, N);
 

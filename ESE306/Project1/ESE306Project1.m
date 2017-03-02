@@ -50,19 +50,60 @@ classdef ESE306Project1
             binArray = binornd(numOfTrials, prob, [1, numOfSamples]);
             histogram(binArray,numOfTrials);
             %Compute the sample mean and variance
-            %avg = mean(binArray);
-                %variance = var(binArray);
-                %Moments utilizing the 'binostat' function
-            [avg, variance] = binostat(numOfTrials, prob);
+            avg = mean(binArray);
+            variance = var(binArray);
+            %Moments utilizing the 'binostat' function
+            [mu, sigma] = binostat(numOfTrials, prob);
             % Compute the parameters of the distribution from data
             param = binofit(binArray, numOfTrials);
-            %Display the results
             fprintf('Binomial Distribution\n');
             fprintf('Sample Mean: %f\n', avg);
             fprintf('Sample Variance: %f\n', variance);
-            fprintf('Theoretical Mean: %f\n', avg);
-            fprintf('Theoretical Variance: %f\n', variance);
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', sigma);
                 %fprintf('Distribution Parameters: %f\n', param);
+        end
+        
+        %Poisson Distribution
+        function poisson()
+            fprintf('Poisson Distribution:\n');
+            fprintf('Poisson(lamda, numOfSamples)\n');
+            prompt = 'Enter lamda:';
+            lamda = input(prompt);
+            prompt = 'Enter number of samples:';
+            numOfSamples = input(prompt);
+            poissArray = poissrnd(lamda, [1,numOfSamples]);
+            histogram(poissArray);
+            avg = mean(poissArray);
+            variance = var(poissArray);
+            [mu, sigma] = poisstat(lamda);
+            fprintf('Poisson Distribution\n');
+            fprintf('Sample Mean: %f\n', avg);
+            fprintf('Sample Variance: %f\n', variance);
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', sigma);
+        end
+        
+        function normal()
+            
+        end
+        
+        function betaBinomialPDF()
+            
+        end
+        
+        %Beta Binomial
+        function betaBinomialPMF()
+            fprintf('Beta-Binomial Distribution:\n');
+            fprintf('Binomial(numOfTrials, numOfSamples, alpha, beta)\n');
+            prompt = 'Enter number of trials: ';
+            SampleSize = input(prompt);
+            numOfTrials = SampleSize;
+            prompt = 'Enter probability of each success: ';
+            prob = input(prompt);
+            prompt = 'Enter number of samples: ';
+            numOfSamples = input(prompt);
+            
         end
     end
     

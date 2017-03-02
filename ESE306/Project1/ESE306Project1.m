@@ -25,26 +25,30 @@ classdef ESE306Project1
             fprintf('1]Binomial\n');
             fprintf('2]Poisson\n');
             fprintf('3]Normal\n');
-            fprintf('4]Befa\n');
-            %fprintf('Poisson Distribution:\nPoisson(x,y)\nx = lamda\ny = number of trials\n');
-            %fprintf('Normal Distribution:\nNormal(x,y,z)\nx = mu\ny = sigma\nz = number of samples\n');
-            %fprintf('Beta Distribution:\nBeta(x,y,z)\nx = alpha\ny = beta\nz = number of samples\n');
-
-            
-           
+            fprintf('4]BetaBinomialPDF\n');
+            fprintf('5]BetaBinomialPMF\n');
+            fprintf('0]Exit\n');   
         end
         
         %Binomial
         function binomial()
             fprintf('Binomial Distribution:\n');
             fprintf('Binomial(numOfTrials, prob, numOfSamples)\n');
-            prompt = 'Enter number of trials: ';
-            SampleSize = input(prompt);
-            numOfTrials = SampleSize;
-            prompt = 'Enter probability of each success: ';
-            prob = input(prompt);
-            prompt = 'Enter number of samples: ';
-            numOfSamples = input(prompt);
+            %prompt = 'Enter number of trials: ';
+            %SampleSize = input(prompt);
+            %numOfTrials = SampleSize;
+            %prompt = 'Enter probability of each success: ';
+            %prob = input(prompt);
+            %prompt = 'Enter number of samples: ';
+            %numOfSamples = input(prompt);
+            
+            numOfTrials = 10000;
+            prob = .5;
+            numOfSamples = 10000;
+            
+            fprintf('Number of Trials: %f\n',numOfTrials);
+            fprintf('Probability: %f\n',prob);
+            fprintf('Number of Samples: %f\n',numOfSamples);
             
             %Get binomial array
             binArray = binornd(numOfTrials, prob, [1, numOfSamples]);
@@ -56,7 +60,6 @@ classdef ESE306Project1
             [mu, sigma] = binostat(numOfTrials, prob);
             % Compute the parameters of the distribution from data
             param = binofit(binArray, numOfTrials);
-            fprintf('Binomial Distribution\n');
             fprintf('Sample Mean: %f\n', avg);
             fprintf('Sample Variance: %f\n', variance);
             fprintf('Theoretical Mean: %f\n', mu);
@@ -68,10 +71,16 @@ classdef ESE306Project1
         function poisson()
             fprintf('Poisson Distribution:\n');
             fprintf('Poisson(lamda, numOfSamples)\n');
-            prompt = 'Enter lamda:';
-            lamda = input(prompt);
-            prompt = 'Enter number of samples:';
-            numOfSamples = input(prompt);
+            %prompt = 'Enter lamda:';
+            %lamda = input(prompt);
+            %prompt = 'Enter number of samples:';
+            %numOfSamples = input(prompt);
+            
+            lamda = 50;
+            numOfSamples = 1000;
+            fprintf('Lamda: %f\n',lamda);
+            fprintf('Number of Samples: %f\n',numOfSamples);
+            
             poissArray = poissrnd(lamda, [1,numOfSamples]);
             histogram(poissArray);
             avg = mean(poissArray);
@@ -85,7 +94,27 @@ classdef ESE306Project1
         end
         
         function normal()
+            fprintf('Normal Distribution:\n');
+            fprintf('Normal(mu, sigma, numOfSamples)\n');
             
+            mu = 10;
+            sigma = 10;
+            numOfSamples = 1000;
+            
+            fprintf('Mu: %f\n',mu);
+            fprintf('Sigma: %f\n',sigma);
+            fprintf('Number of Samples: %f\n',numOfSamples);
+            
+            normalArray=normrnd(mu, sigma, [1,numOfSamples]);
+            histogram(normalArray);
+            MeanData = mean(normalArray);
+            VarData = var(normalArray);
+            [mu, variance] = normstat(mu, sigma);
+            fprintf('Poisson Distribution\n');
+            fprintf('Sample Mean: %f\n', MeanData);
+            fprintf('Sample Variance: %f\n', VarData);
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', variance);
         end
         
         function betaBinomialPDF()
@@ -108,4 +137,18 @@ classdef ESE306Project1
     end
     
 end
+
+function Normal(mu, sigma, numOfSamples)
+r=normrnd(mu, sigma, [1,numOfSamples]);
+histogram(r);
+MeanData = mean(r);
+VarData = var(r);
+[mu, variance] = normstat(mu, sigma);
+fprintf('Poisson Distribution\n');
+fprintf('Sample Mean: %f\n', MeanData);
+fprintf('Sample Variance: %f\n', VarData);
+fprintf('Theoretical Mean: %f\n', mu);
+fprintf('Theoretical Variance: %f\n', variance);
+end
+
 

@@ -22,7 +22,22 @@ while(1)
         case 1
             %Binomial
             obj.binomial();
-            
             break;
+        case 2
+            %Poisson
+            obj.poisson();
+            break;
+        case 3
+            %Normal
+            obj.normal();
+            break;
+        case 4
+            obj.betaBinomialPDF();
+            break;
+        case 5
+            obj.betaBinomialPMF();
+            break;
+        otherwise
+            fprintf('Incorrect Input\n');
     end
 end

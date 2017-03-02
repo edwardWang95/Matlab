@@ -3,7 +3,7 @@
 %fprintf('Normal Distribution:\nNormal(x,y,z)\nx = mu\ny = sigma\nz = number of samples\n');
 %fprintf('Beta Distribution:\nBeta(x,y,z)\nx = alpha\ny = beta\nz = number of samples\n');
 
-clear % Remove any exsiting variables in the workspace
+%clear % Remove any exsiting variables in the workspace
 close all % Close all figure windows
 clc % Clear Command Window
  
@@ -32,10 +32,11 @@ while(1)
             obj.normal();
             break;
         case 4
-            obj.betaBinomialPDF();
+            %Beta
+            obj.beta();
             break;
         case 5
-            obj.betaBinomialPMF();
+            obj.betaBinomial();
             break;
         otherwise
             fprintf('Incorrect Input\n');

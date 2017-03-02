@@ -25,8 +25,8 @@ classdef ESE306Project1
             fprintf('1]Binomial\n');
             fprintf('2]Poisson\n');
             fprintf('3]Normal\n');
-            fprintf('4]BetaBinomialPDF\n');
-            fprintf('5]BetaBinomialPMF\n');
+            fprintf('4]Beta\n');
+            fprintf('5]BetaBinomial\n');
             fprintf('0]Exit\n');   
         end
         
@@ -117,7 +117,38 @@ classdef ESE306Project1
             fprintf('Theoretical Variance: %f\n', variance);
         end
         
-        function betaBinomialPDF()
+        function beta()
+            fprintf('Beta Distribution:\n');
+            fprintf('Beta(Ap, Bp, numOfSamples)\n');
+            NSize = 10000; % number of samples
+            Ap = 700; % Ap and Bp are the parameters of the Beta Distribution
+            Bp = 300;
+            fprintf('Ap: %f\n',Ap);
+            fprintf('Bp: %f\n',Bp);
+            fprintf('Number of Samples: %f\n',NSize);
+            rndArray = betarnd(Ap, Bp, [1, NSize]);
+            % Plot a histogram
+            NBins = 100;   % number of bins in the histogram
+            histogram(rndArray, NBins);
+
+            %title('Samples from Beta Distribution', 'Color', [.27 .89 .76])
+
+            % Compute the sample mean and variance
+            MeanData = mean(rndArray);
+            VarData = var(rndArray);
+
+            % Moments utilizing the 'betastat' function
+            [mu, variance] = betastat(Ap, Bp);
+
+            % Compute the parameters of the distribution from data, utilizing the
+            % 'betafit' function
+            param = betafit(rndArray);
+            
+            fprintf('Beta Distribution\n');
+            fprintf('Sample Mean: %f\n', MeanData);
+            fprintf('Sample Variance: %f\n', VarData);
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', variance);
             
         end
         

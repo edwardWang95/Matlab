@@ -120,13 +120,13 @@ classdef ESE306Project1
         function beta()
             fprintf('Beta Distribution:\n');
             fprintf('Beta(Ap, Bp, numOfSamples)\n');
-            NSize = 10000; % number of samples
-            Ap = 700; % Ap and Bp are the parameters of the Beta Distribution
-            Bp = 300;
-            fprintf('Ap: %f\n',Ap);
-            fprintf('Bp: %f\n',Bp);
-            fprintf('Number of Samples: %f\n',NSize);
-            rndArray = betarnd(Ap, Bp, [1, NSize]);
+            numOfSamples = 10000; % number of samples
+            alpha = 700; % Ap and Bp are the parameters of the Beta Distribution
+            beta = 300;
+            fprintf('Ap: %f\n',alpha);
+            fprintf('Bp: %f\n',beta);
+            fprintf('Number of Samples: %f\n',numOfSamples);
+            rndArray = betarnd(alpha, beta, [1, numOfSamples]);
             % Plot a histogram
             NBins = 100;   % number of bins in the histogram
             histogram(rndArray, NBins);
@@ -138,7 +138,7 @@ classdef ESE306Project1
             VarData = var(rndArray);
 
             % Moments utilizing the 'betastat' function
-            [mu, variance] = betastat(Ap, Bp);
+            [mu, variance] = betastat(alpha, beta);
 
             % Compute the parameters of the distribution from data, utilizing the
             % 'betafit' function
@@ -153,33 +153,56 @@ classdef ESE306Project1
         end
         
         %Beta Binomial
-        function betaBinomialPMF()
+        function betaBinomial()
             fprintf('Beta-Binomial Distribution:\n');
             fprintf('Binomial(numOfTrials, numOfSamples, alpha, beta)\n');
-            prompt = 'Enter number of trials: ';
-            SampleSize = input(prompt);
-            numOfTrials = SampleSize;
-            prompt = 'Enter probability of each success: ';
-            prob = input(prompt);
-            prompt = 'Enter number of samples: ';
-            numOfSamples = input(prompt);
-            
+            %Constants
+            numOfSamples = 1000; 
+            numOfTrials = 500;
+            alpha = 700; % Ap and Bp are the parameters of the Beta Distribution
+            beta = 300;
+            fprintf('Number of Samples: %f\n',numOfSamples);
+            fprintf('Number of Trials: %f\n',numOfTrials);
+            fprintf('Ap: %f\n',alpha);
+            fprintf('Bp: %f\n',beta);
+            %Setup zero array to hold betaBinomia values
+            betaBinArray = zeros([1, numOfSamples]);
+            %Poly-Urn Models
+            for set = 1:numOfSamples
+               success = 0;
+               for rep = 1:numOfTrials
+                  probAlpha = alpha/(beta + alpha); %total prob of alpha
+                  test = rand;
+                  if test < probAlpha
+                      %Increment success counter and alpha
+                      success = success + 1;
+                      alpha = alpha + 1;
+                  else
+                      %Else increment beta
+                      beta = beta + 1;
+                  end
+               end
+               %Set the success for each set
+               betaBinArray(set) = success;
+            end
+            histogram(betaBinArray);
+            MeanData = mean(betaBinArray);
+            VarData = var(betaBinArray);
+            %Theoretical mean 
+            mu = numOfTrials * (alpha/(alpha + beta));
+            %Theoretical variance
+            total = beta + alpha;
+            totalIncrement = total + 1;
+            varDenom = total * total * totalIncrement;
+            totalNum = total + numOfTrials;
+            sigma = numOfTrials * alpha * beta * (totalNum/varDenom);
+            %Print all values
+            fprintf('BetaBinomial Distribution\n');
+            fprintf('Sample Mean: %f\n', MeanData);
+            fprintf('Sample Variance: %f\n', VarData);
+            fprintf('Theoretical Mean: %f\n', mu);
+            fprintf('Theoretical Variance: %f\n', sigma);
         end
     end
     
 end
-
-function Normal(mu, sigma, numOfSamples)
-r=normrnd(mu, sigma, [1,numOfSamples]);
-histogram(r);
-MeanData = mean(r);
-VarData = var(r);
-[mu, variance] = normstat(mu, sigma);
-fprintf('Poisson Distribution\n');
-fprintf('Sample Mean: %f\n', MeanData);
-fprintf('Sample Variance: %f\n', VarData);
-fprintf('Theoretical Mean: %f\n', mu);
-fprintf('Theoretical Variance: %f\n', variance);
-end
-
-

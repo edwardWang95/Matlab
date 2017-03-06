@@ -52,11 +52,7 @@ classdef ESE306Project1
             
             %Get binomial array
             binArray = binornd(numOfTrials, prob, [1, numOfSamples]);
-<<<<<<< HEAD
-            histogram(binArray);
-=======
                 %histogram(binArray,numOfTrials);
->>>>>>> 409e389c20191adcc7856d8cf067cc1150898eb9
             %Compute the sample mean and variance
             avg = mean(binArray);
             variance = var(binArray);
@@ -133,12 +129,9 @@ classdef ESE306Project1
             fprintf('Number of Samples: %f\n',numOfSamples);
             betaArray = betarnd(alpha, beta, [1, numOfSamples]);
             % Plot a histogram
-<<<<<<< HEAD
-            histogram(rndArray);
-=======
+
             %NBins = 100;   % number of bins in the histogram
             %histogram(betaArray, NBins);
->>>>>>> 409e389c20191adcc7856d8cf067cc1150898eb9
 
             %title('Samples from Beta Distribution', 'Color', [.27 .89 .76])
 

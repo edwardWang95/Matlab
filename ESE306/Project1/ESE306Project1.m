@@ -31,7 +31,7 @@ classdef ESE306Project1
         end
         
         %Binomial
-        function binomial()
+        function binArray = binomial(numOfTrials, prob, numOfSamples)
             fprintf('Binomial Distribution:\n');
             fprintf('Binomial(numOfTrials, prob, numOfSamples)\n');
             %prompt = 'Enter number of trials: ';
@@ -42,9 +42,9 @@ classdef ESE306Project1
             %prompt = 'Enter number of samples: ';
             %numOfSamples = input(prompt);
             
-            numOfTrials = 10000;
-            prob = .5;
-            numOfSamples = 10000;
+            %numOfTrials = 10000;
+            %prob = .5;
+            %numOfSamples = 10000;
             
             fprintf('Number of Trials: %f\n',numOfTrials);
             fprintf('Probability: %f\n',prob);
@@ -52,7 +52,7 @@ classdef ESE306Project1
             
             %Get binomial array
             binArray = binornd(numOfTrials, prob, [1, numOfSamples]);
-            histogram(binArray,numOfTrials);
+                %histogram(binArray,numOfTrials);
             %Compute the sample mean and variance
             avg = mean(binArray);
             variance = var(binArray);
@@ -68,7 +68,7 @@ classdef ESE306Project1
         end
         
         %Poisson Distribution
-        function poisson()
+        function poissArray = poisson(lamda, numOfSamples)
             fprintf('Poisson Distribution:\n');
             fprintf('Poisson(lamda, numOfSamples)\n');
             %prompt = 'Enter lamda:';
@@ -76,13 +76,13 @@ classdef ESE306Project1
             %prompt = 'Enter number of samples:';
             %numOfSamples = input(prompt);
             
-            lamda = 50;
-            numOfSamples = 1000;
+            %lamda = 50;
+            %numOfSamples = 1000;
             fprintf('Lamda: %f\n',lamda);
             fprintf('Number of Samples: %f\n',numOfSamples);
             
             poissArray = poissrnd(lamda, [1,numOfSamples]);
-            histogram(poissArray);
+                %histogram(poissArray);
             avg = mean(poissArray);
             variance = var(poissArray);
             [mu, sigma] = poisstat(lamda);
@@ -91,15 +91,16 @@ classdef ESE306Project1
             fprintf('Sample Variance: %f\n', variance);
             fprintf('Theoretical Mean: %f\n', mu);
             fprintf('Theoretical Variance: %f\n', sigma);
+            fprintf('\n');
         end
         
-        function normal()
+        function normalArray = normal(mu, sigma, numOfSamples)
             fprintf('Normal Distribution:\n');
             fprintf('Normal(mu, sigma, numOfSamples)\n');
             
-            mu = 10;
-            sigma = 10;
-            numOfSamples = 1000;
+            %mu = 10;
+            %sigma = 10;
+            %numOfSamples = 1000;
             
             fprintf('Mu: %f\n',mu);
             fprintf('Sigma: %f\n',sigma);
@@ -117,32 +118,32 @@ classdef ESE306Project1
             fprintf('Theoretical Variance: %f\n', variance);
         end
         
-        function beta()
+        function betaArray = beta(alpha, beta, numOfSamples)
             fprintf('Beta Distribution:\n');
-            fprintf('Beta(Ap, Bp, numOfSamples)\n');
-            numOfSamples = 10000; % number of samples
-            alpha = 700; % Ap and Bp are the parameters of the Beta Distribution
-            beta = 300;
+            fprintf('Beta(alpha, beta, numOfSamples)\n');
+            %numOfSamples = 10000; % number of samples
+            %alpha = 700; % Ap and Bp are the parameters of the Beta Distribution
+            %beta = 300;
             fprintf('Ap: %f\n',alpha);
             fprintf('Bp: %f\n',beta);
             fprintf('Number of Samples: %f\n',numOfSamples);
-            rndArray = betarnd(alpha, beta, [1, numOfSamples]);
+            betaArray = betarnd(alpha, beta, [1, numOfSamples]);
             % Plot a histogram
-            NBins = 100;   % number of bins in the histogram
-            histogram(rndArray, NBins);
+            %NBins = 100;   % number of bins in the histogram
+            %histogram(betaArray, NBins);
 
             %title('Samples from Beta Distribution', 'Color', [.27 .89 .76])
 
             % Compute the sample mean and variance
-            MeanData = mean(rndArray);
-            VarData = var(rndArray);
+            MeanData = mean(betaArray);
+            VarData = var(betaArray);
 
             % Moments utilizing the 'betastat' function
             [mu, variance] = betastat(alpha, beta);
 
             % Compute the parameters of the distribution from data, utilizing the
             % 'betafit' function
-            param = betafit(rndArray);
+            param = betafit(betaArray);
             
             fprintf('Beta Distribution\n');
             fprintf('Sample Mean: %f\n', MeanData);
@@ -153,16 +154,16 @@ classdef ESE306Project1
         end
         
         %Beta Binomial
-        function betaBinomial()
+        function betaBinArray = betaBinomial(numOfTrials, numOfSamples, alpha, beta)
             fprintf('Beta-Binomial Distribution:\n');
-            fprintf('Binomial(numOfTrials, numOfSamples, alpha, beta)\n');
+            fprintf('Beta-Binomial(numOfTrials, numOfSamples, alpha, beta)\n');
             %Constants
-            numOfSamples = 1000; 
-            numOfTrials = 500;
-            alpha = 700; % Ap and Bp are the parameters of the Beta Distribution
-            beta = 300;
-            fprintf('Number of Samples: %f\n',numOfSamples);
+            %numOfSamples = 1000; 
+            %numOfTrials = 500;
+            %alpha = 700; % Ap and Bp are the parameters of the Beta Distribution
+            %beta = 300;
             fprintf('Number of Trials: %f\n',numOfTrials);
+            fprintf('Number of Samples: %f\n',numOfSamples);
             fprintf('Ap: %f\n',alpha);
             fprintf('Bp: %f\n',beta);
             %Setup zero array to hold betaBinomia values
@@ -185,7 +186,7 @@ classdef ESE306Project1
                %Set the success for each set
                betaBinArray(set) = success;
             end
-            histogram(betaBinArray);
+            %histogram(betaBinArray);
             MeanData = mean(betaBinArray);
             VarData = var(betaBinArray);
             %Theoretical mean 

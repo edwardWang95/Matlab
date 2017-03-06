@@ -85,10 +85,10 @@ while(1)
         case 5
             %BetaBinomial(numOfTrials, numOfSamples, alpha, beta)            
             fprintf('Beta-Binomial Distribution 1\n');
-            betaBinArray1 = obj.betaBinomial(10,100,2,2);
+            betaBinArray1 = obj.betaBinomial(100,10,2,2);
             fprintf('\n');
             fprintf('Beta-Binomial Distribution 2\n');
-            betaBinArray2 = obj.betaBinomial(10,100,600,400);
+            betaBinArray2 = obj.betaBinomial(10,10,600,400);
             %Display Graphs
             subplot(2,1,1);       % add first plot in 2 x 2 grid
             histogram(betaBinArray1);          % line plot

@@ -85,7 +85,7 @@ while(1)
         case 5
             %BetaBinomial(numOfTrials, numOfSamples, alpha, beta)            
             fprintf('Beta-Binomial Distribution 1\n');
-            betaBinArray1 = obj.betaBinomial(10,100,2,2);
+            betaBinArray1 = obj.betaBinomial(10,100,2,5);
             fprintf('\n');
             fprintf('Beta-Binomial Distribution 2\n');
             betaBinArray2 = obj.betaBinomial(10,100,600,400);

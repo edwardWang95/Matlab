@@ -3,7 +3,7 @@
 %fprintf('Normal Distribution:\nNormal(x,y,z)\nx = mu\ny = sigma\nz = number of samples\n');
 %fprintf('Beta Distribution:\nBeta(x,y,z)\nx = alpha\ny = beta\nz = number of samples\n');
 
-%clear % Remove any exsiting variables in the workspace
+clear % Remove any exsiting variables in the workspace
 close all % Close all figure windows
 clc % Clear Command Window
  

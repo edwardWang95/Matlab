@@ -139,6 +139,7 @@ classdef ESE306Project1
             fprintf('Number of Samples: %f\n',numOfSamples);
             betaArray = betarnd(alpha, beta, [1, numOfSamples]);
             % Plot a histogram
+
             %NBins = 100;   % number of bins in the histogram
             %histogram(betaArray, NBins);
 

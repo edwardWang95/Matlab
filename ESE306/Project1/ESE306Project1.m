@@ -4,10 +4,8 @@
 % Date Created:     February 27, 2017
 % Last Update:      February 27, 2017
 %
-% ESE 306 Project showing binomial,
-%
-%
-%
+% ESE 306 Project showing binomial, poisson, normal, beta and beta
+% binomial.
 %
 %**************************************************************************
 classdef ESE306Project1

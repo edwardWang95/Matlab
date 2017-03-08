@@ -116,7 +116,7 @@ classdef ESE306Project1
             histogram(normalArray);
             avg = mean(normalArray);
             variance = var(normalArray);
-            [mu, sigma] = normstat(avg, variance);
+            [mu, sigma] = normstat(avg, sigma);
             fprintf('Poisson Distribution\n');
             fprintf('Sample Mean: %f\n', avg);
             fprintf('Sample Variance: %f\n', variance);

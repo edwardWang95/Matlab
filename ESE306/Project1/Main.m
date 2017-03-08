@@ -1,8 +1,3 @@
-%fprintf('Binomial Distribution:\nBinomial(x,y,z)\nx = number of trials\ny = probability\nz = number of samples\n');
-%fprintf('Poisson Distribution:\nPoisson(x,y)\nx = lamda\ny = number of trials\n');
-%fprintf('Normal Distribution:\nNormal(x,y,z)\nx = mu\ny = sigma\nz = number of samples\n');
-%fprintf('Beta Distribution:\nBeta(x,y,z)\nx = alpha\ny = beta\nz = number of samples\n');
-
 clear % Remove any exsiting variables in the workspace
 close all % Close all figure windows
 clc % Clear Command Window
@@ -22,17 +17,16 @@ while(1)
         case 1
             %Binomial(numOfTrials, prob, numOfSamples)
             obj.binomial(20,.5,20);
-            
             fprintf('Binomial Distribution 1\n');
             binArray1 = obj.binomial(20,.5,200);
             fprintf('\n');
             fprintf('Binomial Distribution 2\n');
             binArray2 = obj.binomial(40,.5,200);
             %Display Graphs
-            subplot(2,1,1);       % add first plot in 2 x 2 grid
+            subplot(2,1,1);       % add first plot in 2 x 1 grid
             histogram(binArray1);          % line plot
             title('Binomial Distribution 1');
-            subplot(2,1,2);       % add first plot in 2 x 2 grid
+            subplot(2,1,2);       % add first plot in 2 x 1 grid
             histogram(binArray2);           % line plot
             title('Binomial Distribution 2');
             break;
@@ -44,10 +38,10 @@ while(1)
             fprintf('Poisson Distribution 2\n');
             poissArray2 = obj.poisson(4,100);
             %Display Graphs
-            subplot(2,1,1);       % add first plot in 2 x 2 grid
+            subplot(2,1,1);       % add first plot in 2 x 1 grid
             histogram(poissArray1);          % line plot
             title('Poisson Distribution 1');
-            subplot(2,1,2);       % add first plot in 2 x 2 grid
+            subplot(2,1,2);       % add first plot in 2 x 1 grid
             histogram(poissArray2);           % line plot
             title('Poisson Distribution 2');
 
@@ -60,10 +54,10 @@ while(1)
             fprintf('Normal Distribution 2\n');
             normalArray2 = obj.normal(0,.2,100);
             %Display Graphs
-            subplot(2,1,1);       % add first plot in 2 x 2 grid
+            subplot(2,1,1);       % add first plot in 2 x 1 grid
             histogram(normalArray1);          % line plot
             title('Normal Distribution 1');
-            subplot(2,1,2);       % add first plot in 2 x 2 grid
+            subplot(2,1,2);       % add first plot in 2 x 1 grid
             histogram(normalArray2);           % line plot
             title('Normal Distribution 2');
             break;
@@ -75,10 +69,10 @@ while(1)
             fprintf('Beta Distribution 2\n');
             betaArray2 = obj.beta(1,3,500);
             %Display Graphs
-            subplot(2,1,1);       % add first plot in 2 x 2 grid
+            subplot(2,1,1);       % add first plot in 2 x 1 grid
             histogram(betaArray1);          % line plot
             title('Beta Distribution 1');
-            subplot(2,1,2);       % add first plot in 2 x 2 grid
+            subplot(2,1,2);       % add first plot in 2 x 1 grid
             histogram(betaArray2);           % line plot
             title('Beta Distribution 2');
             break;
@@ -90,10 +84,10 @@ while(1)
             fprintf('Beta-Binomial Distribution 2\n');
             betaBinArray2 = obj.betaBinomial(10,100,600,400);
             %Display Graphs
-            subplot(2,1,1);       % add first plot in 2 x 2 grid
+            subplot(2,1,1);       % add first plot in 2 x 1 grid
             histogram(betaBinArray1);          % line plot
             title('Beta-Binomial Distribution 1');
-            subplot(2,1,2);       % add first plot in 2 x 2 grid
+            subplot(2,1,2);       % add first plot in 2 x 1 grid
             histogram(betaBinArray2);           % line plot
             title('Beta-Binomial Distribution 2');
             break;
